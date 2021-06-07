@@ -16,8 +16,6 @@ const fetchMyIP = function(callback, error) {
   });
 };
 
-module.exports = { fetchMyIP };
-
 const fetchCoordsByIP = function(ip, callback) {
   request(`https://freegeoip.app/json/${ip}`, (error, response, body) => {
     if (error) {
@@ -35,7 +33,6 @@ const fetchCoordsByIP = function(ip, callback) {
   });
 };
 
-module.exports = { fetchCoordsByIP };
 
 const fetchISSFlyOverTimes = function(coords, callback) {
   const url = `http://api.open-notify.org/iss/v1/?lat=${coords.latitude}&lon=${coords.longitude}`;
@@ -55,8 +52,6 @@ const fetchISSFlyOverTimes = function(coords, callback) {
     callback(null, passes);
   });
 };
-
-module.exports = { fetchISSFlyOverTimes };
 
 const nextISSTimesForMyLocation = function(callback) {
   fetchMyIP((error, ip) => {
@@ -79,4 +74,8 @@ const nextISSTimesForMyLocation = function(callback) {
     });
   });
 };
+
+module.exports = { fetchMyIP };
+module.exports = { fetchCoordsByIP };
+module.exports = { fetchISSFlyOverTimes };
 module.exports = { nextISSTimesForMyLocation };
